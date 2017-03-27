@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h1>Settings</h1>
+<div class="row jumbotron">
+    <div class="col-sm-3 bg-info"><p>Indoor Temperature</p><p class="medium-label">{{ sensors.indoor_temp }}C</p></div>
+    <div class="col-sm-3 bg-info"><p>Set Temperature</p><p class="medium-label">{{ heatpump.temp }}C</p></div>
+    <div class="col-sm-3 bg-info"><p>Outdoor Temperature</p><p class="medium-label">{{ sensors.indoor_temp }}C</p></div>
+</div>
+
+<form class="pure-form pure-form-aligned">
+    <fieldset>
+        <legend>Ilmalämpöpumpun asetukset</legend>
+        <div class="btn-group-vertical">
+            <button type="button" class="btn btn-success col-sm-2 {{ heatpump.on == TRUE ? ' pure-button-active pure-button-disabled' }}" id="power_on" >Päällä</button>
+            <button type="button" class="btn btn-danger col-sm-2 {{ heatpump.on == FALSE ? ' pure-button-active pure-button-disabled' }}" id="power_off">Pois päältä</button>
+        </div>
+        <div class="space"><!-- --></div>
+        <div class="form-group">
+            <label for="mode">Tila</label>
+            <select name="mode" class="form-control">
+              {% for key,val in heatpump.hvac_modes %}
+                <option value="{{ val.value }}" {{  heatpump.hvac_mode == '' and key == 0 ? ' selected ' :(val.value == heatpump.hvac_mode ? ' selected ' : '') }}>{{ val.label }}</option>
+              {% endfor %}
+            </select>
+            <span class="pure-form-message-inline">Lämpötila-asetus ilmalämpöpumpulle.</span>
+        </div>
+        <div class="form-group">
+            <label for="mode">Suunta</label>
+            <select name="vane" class="form-control">
+              {% for key,val in heatpump.vane_modes %}
+                <option value="{{ val.value }}" {{  heatpump.vane == '' and key == 0 ? ' selected ' :(val.value == heatpump.vane ? ' selected ' : '') }}>{{ val.label }}</option>
+              {% endfor %}
+            </select>
+            <span class="pure-form-message-inline">Ilmavirranohjaimen suunta.(1-5 joista 1 on ylin)</span>
+        </div>
+        <div class="form-group">
+            <label for="temperature">Lämpötila</label>
+            <input name="temperature" id="temperature" type="number" placeholder="Lämpötila" value="{{ heatpump.temp }}" class="form-control">
+            <span class="pure-form-message-inline">Lämpötila-asetus ilmalämpöpumpulle.</span>
+        </div>
+        <div class="form-group">
+            <label for="fan_speed">Nopeus</label>
+            <input id="fan_speed" type="number" min=0 max=3 placeholder="Nopeus" value="{{ heatpump.fan_speed }}" class="form-control">
+            <span class="pure-form-message-inline">Tuulettimen nopeusasetus. (0 on automaatti)</span>
+        </div>
+    </fieldset>
+</form>
+{% endblock body %}
+
+{% block javascript %}
+<script src="/js/settings.js"><!-- eh --></script>
+{% endblock javascript %}

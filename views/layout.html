@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+
+        <title>{{title}}</title>
+
+        <link rel="stylesheet" href="/css/layout.css">
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    </head>
+
+    <body>
+
+        <div class="container">
+            {% block body %} {% endblock %}
+        </div> <!-- /container -->
+
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"><!-- eh --></script>
+        <script src="/js/site.js"><!-- eh --></script>
+      {% block javascript %} {% endblock %}
+        <!-- Placed at the end of the document so the pages load faster -->
+    </body>
+</html>

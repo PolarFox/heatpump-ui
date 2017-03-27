@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h1>Status</h1>
+<div class="row">
+    <div class="col-sm-3 bg-info"><p>Indoor Temperature</p><p class="medium-label">{{ sensors.indoor_temp }}C</p></div>
+    <div class="col-sm-3 bg-info"><p>Set Temperature</p><p class="medium-label">{{ heatpump.temp }}C</p></div>
+    <div class="col-sm-3 bg-info"><p>Outdoor Temperature</p><p class="medium-label">{{ sensors.indoor_temp }}C</p></div>
+</div>
+
+{% endblock body %}
